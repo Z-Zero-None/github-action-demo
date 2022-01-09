@@ -1,10 +1,10 @@
 name: Go
 
-on:
+on:   #什么时候会执行jobs
   push:
-    branches: [ main ]
+    branches: [ main ]    #指定分支
   pull_request:
-    branches: [ main ]
+    branches: [ main ]    #指定分支
 
 jobs:
 #CI过程
@@ -23,4 +23,10 @@ jobs:
 
     - name: Test                  #go语言test文件
       run: go test -v ./...
+
+    - name: golangci-lint         #golang分格检查
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.29
+
 #CD过程
