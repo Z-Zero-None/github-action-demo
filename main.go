@@ -2,11 +2,10 @@ package main
 
 import "fmt"
 
-
-func First(){
-	fmt.Printf("Hello,World!github-acion-demo")
+func First()string{
+	return "Hello,World!github-acion-demo"
 }
 
 func main(){
-	First()
+	fmt.Println(First())
 }
