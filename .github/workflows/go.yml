@@ -7,33 +7,33 @@ on:   #什么时候会执行jobs
     branches: [ main ]    #指定分支
 
 jobs:
-#CI过程
+  #CI过程
   build:
     runs-on: ubuntu-latest        #设置运行项目环境——在ubuntu虚拟机中
     steps:                        #执行步骤
-    - uses: actions/checkout@v2   #copy一份代码
+      - uses: actions/checkout@v2   #copy一份代码
 
-    - name: Set up Go             #动作名称
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.17          #设置指定go版本
+      - name: Set up Go             #动作名称
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17          #设置指定go版本
 
-    - name: Build                 #go语言语法编译
-      run: go build -v ./...
+      - name: Build                 #go语言语法编译
+        run: go build -v ./...
 
-    - name: golangci-lint         #golang分格检查
-      uses: golangci/golangci-lint-action@v2
-      with:
-        version: v1.29
+      - name: golangci-lint         #golang分格检查
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.29
 
-    - name: Run Gosec Security Scanner    #代码检查
-        run: |
-          export PATH=$PATH:$(go env GOPATH)/bin
-          go get github.com/securego/gosec/cmd/gosec
-          gosec ./...
+      - name: Run Gosec Security Scanner    #代码检查
+          run: |
+            export PATH=$PATH:$(go env GOPATH)/bin
+            go get github.com/securego/gosec/cmd/gosec
+            gosec ./...
 
-    - name: Test                  #go语言test文件
-      run: go test -v ./...
+      - name: Test                  #go语言test文件
+        run: go test -v ./...
 
 
 
