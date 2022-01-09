@@ -21,10 +21,10 @@ jobs:
       - name: Build                 #go语言语法编译
         run: go build -v ./...
 
-      - name: golangci-lint         #golang分格检查
-        uses: golangci/golangci-lint-action@v2
-        with:
-          version: v1.29
+      - name: golangci-lint
+          uses: golangci/golangci-lint-action@v2
+          with:
+            version: v1.29
 
       - name: Run Gosec Security Scanner    #代码检查
           run: |
